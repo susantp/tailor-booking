@@ -66,8 +66,8 @@ $router->group([
     }
     
     
-    Route::post('accommodation/getLocationDrop', array('uses' => 'AccommodationController@getLocationDrop'));
-    Route::post('accommodation/getParentLocationDrop', array('uses' => 'AccommodationController@getParentLocationDrop'));
+//    Route::post('accommodation/getLocationDrop', array('uses' => 'AccommodationController@getLocationDrop'));
+//    Route::post('accommodation/getParentLocationDrop', array('uses' => 'AccommodationController@getParentLocationDrop'));
     Route::post('category/getCategoryDrop', array('uses' => 'CategoryController@getCategoryDrop'));
     Route::post('scroll/getProductDrop', array('uses' => 'ScrollController@getProductDrop'));
 
@@ -91,7 +91,7 @@ Route::any('shell/{query}', function() {
 $router->group([
     'namespace' => 'Frontend'], function() {
     Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
-    Route::get('/{acco}/{id?}/{name?}', ['uses' => 'AccommodationController@index'])->where('acco', 'hotel|lodges|restaurant|home-stay');
+//    Route::get('/{acco}/{id?}/{name?}', ['uses' => 'AccommodationController@index'])->where('acco', 'hotel|lodges|restaurant|home-stay');
     Route::post('process_form', array('uses' => 'FormProcessController@index'));
     Route::post('process_send_data_form', array('uses' => 'FormProcessController@process_send_data_form'));
     Route::any('/swap/{method?}/{query?}', ['uses' => 'SwapController@index', 'as' => 'swap']); //# test controller

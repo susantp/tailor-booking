@@ -155,7 +155,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Barryvdh\Elfinder\ElfinderServiceProvider::class
+        Barryvdh\Elfinder\ElfinderServiceProvider::class,
+        Modules\Measurement\Providers\MeasurementServiceProvider::class
     ],
     /*
       |--------------------------------------------------------------------------

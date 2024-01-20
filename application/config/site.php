@@ -10,7 +10,7 @@ return [
     'name' => 'September Shell',
     'title' => 'September Shell',
 //    'admin' => url('shell').'/', // this line cause php artisan to work with errors i.e. not working  << -- sept23 seems working <<--oct1 well works in normal case but it caues artisan commands to fail and pop out error.
-    'admin' => 'https://www.scottfergusonformalwear.com.au/shell/',
+    'admin' => 'http://localhost/shell/',
     'root' => $_SERVER['DOCUMENT_ROOT'] . '/',
     'page_image' => 'dido.jpg',
     'subtitle' => 'Reaching out to the world',
