@@ -1,0 +1,95 @@
+.section {
+    &-hero {
+
+        .hero {
+            &__slider,
+            &__inner {
+                .overlay {
+                    background-color: rgba(color(typography, 6), .4);
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    left: 0;
+                    top: 0;
+                    z-index: 2;
+                }
+            }
+            &-item {
+                position: relative;
+                img {
+                    &.img-100 {
+                        @media(max-width: 767px) {
+                            height: 400px;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+            &-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                padding-top: 50px;
+                padding-bottom: 30px;
+                color: color(typography, 1);
+                position: absolute;
+                bottom: 100px;
+                bottom: 15%;
+                top: auto;
+                height: 100%;
+                align-items: flex-end;
+                z-index: 5;
+                font-size: 20px;
+                font-weight: 600;
+                @media(max-width: 991px) {
+                    bottom: 0;
+                }
+                @media(max-width: 767px) {
+                    font-size: 22px;
+                }
+
+                
+                h2 {
+                    color: color(typography, 1);
+                    font-size: 35px;
+                    font-weight: 600;
+                    margin-bottom: 30px;
+                    line-height: 1.6;
+                    text-shadow: 0px 4px 5px color(typography, 3);
+                    @media(max-width: 767px) {
+                        line-height: 1.2;
+                        font-size: 22px;
+                    }
+                }
+                p {
+                    br {
+                        @media(max-width: 767px) {
+                            display: none;
+                        }
+                    }
+                }
+
+                .btn {
+                    background-color: transparent;
+                    border: 2px solid color(typography, 1);
+                    color: color(typography, 1);
+                    border-radius: 0;
+                    padding: 10px 30px;
+                    font-weight: 600;
+                    margin-top: 10px;
+                    font-size: 25px;
+                    line-height: 1.1;
+                    text-shadow: 0px 4px 5px color(typography, 3);
+                    &:hover {
+                        background-color: color(typography, 5);
+                        border: 2px solid color(typography, 5);
+                        color: color(typography, 1);
+                    }
+
+                    i {
+                        margin-left: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

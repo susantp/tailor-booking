@@ -1,0 +1,23 @@
+.section-hero .hero__slider .overlay, .section-hero .hero__inner .overlay
+{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.product-wrap .overlay {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+@media(max-width: 767px) {
+  .hire-byBrands {
+    display: none;
+  }
+  .section-hero .hero-item img.img-100 {
+    height: auto;
+  }
+}
