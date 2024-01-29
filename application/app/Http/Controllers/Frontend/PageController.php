@@ -81,6 +81,9 @@ class PageController extends MyFrontController
                     if ($menu_data->url == 'contact-us-or-some-other-thing') {
                         return view('frontend.pages.some_other_page', $this->data);
                     }
+                    if ($menu_data->url == 'measurement') {
+                        return app()->call('\Modules\Measurement\Http\Controllers\MeasurementController@index', ['data' => $this->data, 'menuData' => $menu_data]);
+                    }
                 }
             }
         } else {
@@ -89,6 +92,9 @@ class PageController extends MyFrontController
                 $slug = str_slug($method_slug, '_');
                 return $this->$slug($method_params);
             } else {
+                if ($slug == 'send-email') {
+                    return app()->call('\Modules\Measurement\Http\Controllers\MeasurementController@sendEmail');
+                }
                 abort(404, "We Do not serve such requests!");
             }
         }
@@ -116,8 +122,8 @@ class PageController extends MyFrontController
         $this->data['displayTitle'] = 'Hire';
         $this->data['prodDesc'] = Content::where('id', 11)->first();
         $category = Category::where('category_slug', $type)->first();
-        $this->data['curPage']  = $category;
-        $this->data['page_banner'] = $category->image?$category->image:config('site.page_banner');
+        $this->data['curPage'] = $category;
+        $this->data['page_banner'] = $category->image ? $category->image : config('site.page_banner');
         if (!$category) {
             abort(404, "We Do not serve such requests for category!");
         }
@@ -135,8 +141,8 @@ class PageController extends MyFrontController
         $this->data['displayTitle'] = 'Retail';
         $this->data['prodDesc'] = Content::where('id', 11)->first();
         $category = Category::where('category_slug', $type)->first();
-        $this->data['curPage']  = $category;
-        $this->data['page_banner'] = $category->image?$category->image:config('site.page_banner');
+        $this->data['curPage'] = $category;
+        $this->data['page_banner'] = $category->image ? $category->image : config('site.page_banner');
         if (!$category) {
             abort(404, "We Do not serve such requests for category!");
         }
@@ -154,8 +160,8 @@ class PageController extends MyFrontController
         $this->data['displayTitle'] = 'Brand';
         $this->data['prodDesc'] = Content::where('id', 11)->first();
         $category = Category::where('category_slug', $type)->first();
-        $this->data['curPage']  = $category;
-        $this->data['page_banner'] = $category->image?$category->image:config('site.page_banner');
+        $this->data['curPage'] = $category;
+        $this->data['page_banner'] = $category->image ? $category->image : config('site.page_banner');
         if (!$category) {
             abort(404, "We Do not serve such requests for category!");
         }
@@ -172,26 +178,26 @@ class PageController extends MyFrontController
             $slug = reset($params);
 
             $this->data['product'] = $a = Hire::where('slug', $slug)->first();
-            $imgsrc='hire';
+            $imgsrc = 'hire';
             if (!$a) {
                 $this->data['product'] = $b = Retail::where('slug', $slug)->first();
-                $imgsrc='retail';
+                $imgsrc = 'retail';
                 if (!$b) {
                     $this->data['product'] = $c = Brand::where('slug', $slug)->first();
-                    $imgsrc='brand';
+                    $imgsrc = 'brand';
                     if (!$c) {
                         abort(404, "No product found!");
                     }
                 }
             }
-            $this->data['curPage']  = $this->data['product'];
-            $this->data['page_banner'] = $this->data['product']->banner_image ? $this->data['product']->banner_image:config('site.page_banner');
+            $this->data['curPage'] = $this->data['product'];
+            $this->data['page_banner'] = $this->data['product']->banner_image ? $this->data['product']->banner_image : config('site.page_banner');
 //            pr( $this->data['curPage']);
-            if($imgsrc=='hire'){
+            if ($imgsrc == 'hire') {
                 $this->data['images'] = HireImage::where('aid', $this->data['product']->id)->get();
-            }else if($imgsrc=='brand'){
+            } else if ($imgsrc == 'brand') {
                 $this->data['images'] = BrandImage::where('aid', $this->data['product']->id)->get();
-            }else{
+            } else {
                 $this->data['images'] = RetailImage::where('aid', $this->data['product']->id)->get();
             }
 
@@ -203,16 +209,16 @@ class PageController extends MyFrontController
 
     public function gallery()
     {
-        $menu = Menu::where('id',13)->first();
-        $this->data['page_banner'] = $menu->image?$menu->image:config('site.page_banner');
+        $menu = Menu::where('id', 13)->first();
+        $this->data['page_banner'] = $menu->image ? $menu->image : config('site.page_banner');
         $this->data['images'] = GalleryImage::where('gid', 6)->get();
         return view('frontend.pages.gallery', $this->data);
     }
 
     function contact_us()
     {
-        $menu = Menu::where('id',11)->first();
-        $this->data['page_banner'] = $menu->image?$menu->image:config('site.page_banner');
+        $menu = Menu::where('id', 11)->first();
+        $this->data['page_banner'] = $menu->image ? $menu->image : config('site.page_banner');
         $this->data['recent_listings'] = Hire::where('status', 1)->orderBy('created_at', 'desc')->limit(3)->get();
         $this->data['addJs'] = array(//            'assets/frontend/js/pages/contact.js',
         );

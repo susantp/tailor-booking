@@ -1,0 +1,120 @@
+body.menu-open {
+  overflow: hidden;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: color(typography, 3);
+}
+
+.slick {
+  &-slide {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-prev {
+    @include breakpoint(bp-xl) {
+      left: -40px;
+    }
+
+    &:before {
+      content: "\f100";
+    }
+  }
+
+  &-next {
+    @include breakpoint(bp-xl) {
+      right: -40px;
+    }
+
+    &:before {
+      content: "\f101";
+    }
+  }
+
+  &-prev,
+  &-next {
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    z-index: 10;
+    border: 3px solid rgba(color(typography, 5), .2);
+    border-radius: 50%;
+
+    &:hover {
+      border: 3px solid rgba(color(typography, 5), .7);
+    }
+
+    &:before,
+    &:after {
+      line-height: 55px;
+      color: color(typography, 5);
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    &:before {
+      background-image: url('../images/slick-prev.svg');
+    }
+
+  }
+
+  &-next {
+    &:before {
+      background-image: url('../images/slick-next.svg');
+    }
+  }
+}
+
+
+.slick-dotted.slick-slider {
+  margin-bottom: 0;
+}
+
+
+.button-wrap {
+  padding-left: 10px;
+  padding-right: 10px;
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+
+  li {
+    // margin-bottom: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .btn {
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 22px;
+    background-color: color(bg, 1);
+    color: color(typography,3);
+    border: 1px solid color(typography,3);
+    padding: 10.5px 20px;
+    min-width: 150px;
+    font-weight: 400;
+    @include font-family(base);
+    border-radius: 5px;
+    text-transform: initial;
+    &:hover {
+      background-color: color(bg, 5);
+      color: color(typography,1);
+      border: 1px solid color(typography,5);
+    }
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+

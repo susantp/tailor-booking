@@ -3,12 +3,6 @@
 namespace Modules\Measurement\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Models\Module;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Middleware\CheckPermission;
 
 class MeasurementServiceProvider extends ServiceProvider {
 
@@ -18,7 +12,7 @@ class MeasurementServiceProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', '\Modules\Measurement');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'measurement');
         $this->app->register(RouteServiceProvider::class);
     }
 
